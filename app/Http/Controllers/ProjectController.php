@@ -11,6 +11,7 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::query()
+        ->withCount('issues')
         ->latest()
         ->paginate(10);
 
@@ -30,6 +31,7 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
+        $project->load('issues');
         return view('projects.show', compact('project'));
     }
 
