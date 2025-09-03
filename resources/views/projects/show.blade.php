@@ -7,6 +7,8 @@
     <!-- Project Header -->
     <h1 class="text-3xl font-bold mb-4 text-white">{{ $project->name }}</h1>
     <p class="mb-6 text-gray-300">{{ $project->description }}</p>
+    <p class="mb-6 text-gray-300">{{ $project->start_date }}</p>
+    <p class="mb-6 text-gray-300">{{ $project->deadline }}</p>
 
     <!-- Action Buttons -->
     <div class="flex space-x-4 justify-center">

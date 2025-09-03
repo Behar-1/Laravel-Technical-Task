@@ -23,6 +23,12 @@
                     <p class="mt-2">
                         <span class="text-gray-600">Description: </span> <span class="text-gray-300">{{ $project->description }}</span>
                     </p>
+                    <p class="mt-2">
+                        <span class="text-gray-600">Start Date: </span> <span class="text-gray-300">{{ $project->start_date }}</span>
+                    </p>
+                    <p class="mt-2">
+                        <span class="text-gray-600">Deadline: </span> <span class="text-gray-300">{{ $project->deadline }}</span>
+                    </p>
                 </div>
                 <div class="flex space-x-3">
                     <a href="{{ route('projects.show', $project) }}" class="bg-gray-600 hover:bg-gray-500 text-white px-4 py-2 rounded shadow text-sm">

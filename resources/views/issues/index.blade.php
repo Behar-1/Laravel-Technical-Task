@@ -12,6 +12,8 @@
     </div>
 
     <form method="GET" class="mt-4 mb-4 flex gap-2">
+        <input type="text" name="search" id="search" placeholder="Search issues..."
+           class="border p-2 flex-1" value="{{ request('search') }}">
         <select name="status" class="border p-2">
             <option value="">-- Status --</option>
             <option value="open" {{ request('status')=='open'?'selected':'' }}>Open</option>
@@ -23,6 +25,12 @@
             <option value="low" {{ request('priority')=='low'?'selected':'' }}>Low</option>
             <option value="medium" {{ request('priority')=='medium'?'selected':'' }}>Medium</option>
             <option value="high" {{ request('priority')=='high'?'selected':'' }}>High</option>
+        </select>
+        <select name="tag" class="form-select">
+            <option value="">All Tags</option>
+            @foreach($tags as $tag)
+                <option value="{{ $tag->id }}" @selected(request('tag') == $tag->id)>{{ $tag->name }}</option>
+            @endforeach
         </select>
         <button class="bg-gray-600 text-white px-3 py-1 rounded">Filter</button>
     </form>
@@ -77,4 +85,34 @@
         <p class="text-gray-400 text-lg">No issues found. Create your first issue!</p>
     @endif
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('search');
+        const issuesContainer = document.getElementById('issues-container');
+        const form = document.getElementById('filter-form');
+
+        let timeout = null;
+
+        searchInput.addEventListener('keyup', function () {
+            clearTimeout(timeout);
+
+            timeout = setTimeout(() => {
+                const formData = new FormData(form);
+                const params = new URLSearchParams(formData).toString();
+
+                fetch(`{{ route('issues.index') }}?${params}`, {
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                })
+                .then(response => response.text())
+                .then(html => {
+                    issuesContainer.innerHTML = html;
+                });
+            }, 500); // 500ms debounce
+        });
+    });
+    </script>
+
 @endsection

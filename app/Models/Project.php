@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Project extends Model
 {
-    protected $fillable = ['name', 'description'];
+    protected $fillable = ['name', 'description', 'start_date', 'deadline'];
 
     public function issues(): HasMany {
         return $this->hasMany(Issues::class);
