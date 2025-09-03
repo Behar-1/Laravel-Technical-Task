@@ -41,7 +41,7 @@ class ProjectController extends Controller
     public function update(StoreProjectRequest $request, Project $project)
     {
         $project->update($request->validated());
-        return redirect()->route('projects.index', $project)->with('success', 'Project updated');
+        return redirect()->route('projects.show', $project)->with('success', 'Project updated');
     }
 
     public function destroy(Project $project)
