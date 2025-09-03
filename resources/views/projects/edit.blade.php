@@ -39,6 +39,34 @@
             @enderror
         </div>
 
+        <div>
+            <label class="block mb-2 font-medium text-gray-300">Start Date</label>
+            <input
+                type="date"
+                name="start_date"
+                value="{{ old('start_date', $project->start_date) }}"
+                class="w-full p-3 rounded bg-gray-700 border border-gray-600 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Start Date"
+            >
+            @error('start_date')
+                <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div>
+            <label class="block mb-2 font-medium text-gray-300">Deadline</label>
+            <input
+                type="date"
+                name="deadline"
+                value="{{ old('deadline', $project->deadline) }}"
+                class="w-full p-3 rounded bg-gray-700 border border-gray-600 text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Start Date"
+            >
+            @error('deadline')
+                <div class="text-red-500 mt-1 text-sm">{{ $message }}</div>
+            @enderror
+        </div>
+
         <!-- Submit Button -->
         <div class="flex justify-end space-x-3">
             <a href="{{ route('projects.index') }}" class="p-2 bg-gray-500 hover:bg-gray-600 text-white px-5 py-2 rounded shadow" style="margin-right: 5px">
